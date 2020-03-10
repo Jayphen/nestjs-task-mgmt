@@ -3,7 +3,7 @@ import { IsOptional, IsIn, IsNotEmpty } from 'class-validator';
 
 export class GetTasksFilterDto {
   @IsOptional()
-  @IsIn([TaskStatus.OPEN, TaskStatus.DONE, TaskStatus.IN_PROGRESS])
+  @IsIn(Object.keys(TaskStatus))
   status: TaskStatus;
 
   @IsOptional()
