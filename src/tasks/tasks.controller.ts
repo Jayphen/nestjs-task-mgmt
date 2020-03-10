@@ -19,6 +19,8 @@ import { TaskStatusValidationPipe } from 'src/tasks/pipes/task-status-validation
 import { TaskStatus } from 'src/tasks/task-status.enum';
 import { GetTasksFilterDto } from 'src/tasks/dto/get-tasks-filter.dto';
 import { AuthGuard } from '@nestjs/passport';
+import { GetUser } from 'src/auth/get-user.decorator';
+import { User } from 'src/auth/user.entity';
 
 @Controller('tasks')
 @UseGuards(AuthGuard())
@@ -39,8 +41,11 @@ export class TasksController {
 
   @Post()
   @UsePipes(ValidationPipe)
-  createTask(@Body() createTaskDto: CreateTaskDto): Promise<Task> {
-    return this.tasksService.createTask(createTaskDto);
+  createTask(
+    @Body() createTaskDto: CreateTaskDto,
+    @GetUser() user: User,
+  ): Promise<Task> {
+    return this.tasksService.createTask(createTaskDto, user);
   }
 
   @Delete('/:id')
