@@ -1,0 +1,10 @@
+{
+  "db": {
+    "host": "localhost",
+    "username": "Jayphen",
+    "synchronize": true
+  },
+  "jwt": {
+    "secret": "topSecret51"
+  }
+}
